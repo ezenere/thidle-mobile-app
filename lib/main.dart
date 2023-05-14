@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:thidle/app.dart';
+import 'package:thidle/login.dart';
+import 'package:thidle/menu.dart';
+import 'package:thidle/profile/profile2.dart';
 
 void main() {
   runApp(const Thidle());
@@ -12,6 +16,9 @@ class Thidle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark)
+    );
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -20,8 +27,14 @@ class Thidle extends StatelessWidget {
           elevation: 0,
         )
       ),
-        title: 'Thidle',
-        home: const App(),
+      title: 'Thidle',
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => LoginScreen(),
+        '/login/signin': (context) => LoginScreen(),
+        '/': (context) => App(),
+        '/profile': (context) => Profile()
+      },
     );
   }
 }
